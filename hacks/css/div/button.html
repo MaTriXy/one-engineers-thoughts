@@ -1,0 +1,166 @@
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+</style>
+
+<h2>Buttons</h2>
+
+<div class="example">
+  <style>
+    .button.default {
+
+    }
+  </style>
+  <div class="button default">Label</div>
+</div>
+
+<div class="example">
+  <style>
+    .button.reset {
+      border-radius: none;
+      outline: none;
+      border-color: none;
+      border-width: 0;
+      background: none;
+      position: static;
+      line-height: 1;
+      display: block;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      font-family: Arial;
+    }
+  </style>
+  <div class="button reset">Label</div>
+</div>
+
+<div class="example">
+  <style>
+    .button.no-background {
+      background: none;
+    }
+  </style>
+  <div class="button no-background">Label</div>
+</div>
+
+<div class="example">
+  <style>
+    .button.no-border {
+      border: none;
+    }
+  </style>
+  <div class="button no-border">Label</div>
+</div>
+
+<div class="example">
+  <style>
+    .button.no-line-height {
+      line-height: 1;
+    }
+  </style>
+  <div class="button no-line-height">Label</div>
+</div>
+
+<div class="example">
+  <style>
+    .button.no-padding {
+      padding: 0;
+    }
+  </style>
+  <div class="button no-padding">Label</div>
+</div>
+
+<div class="example">
+  <style>
+    .button.no-border-radius {
+      border-radius: 0px 0px 0px 0px;
+    }
+  </style>
+  <div class="button no-border-radius">Label</div>
+</div>
+
+<h2>Square</h2>
+
+Shows a fully composed button, then shows screens of how it looks at each step of the way.
+
+<div class="example">
+  <style>
+    .button.reset.square.a {
+      background: #ddd;
+      padding: 10px 20px;
+    }
+  </style>
+  <div class="button reset square a">Label</div>
+</div>
+
+<div class="example">
+  <p>Same square, done manually</p>
+  <style>
+    .button.reset.square.b {
+      background: #ddd;
+      text-align: center;
+      height: 30px;
+      width: 70px; /* roughly how it would be */
+    }
+  </style>
+  <div class="button reset square b">Label</div>
+</div>
+
+<h2>Pill</h2>
+
+<div class="example">
+  <style>
+    .button.reset.pill.a {
+      background: #ddd;
+      padding: 10px 20px;
+      border-radius: 15px;
+    }
+  </style>
+  <div class="button reset pill a">Label</div>
+</div>
+
+<div class="example">
+  <p>Same pill, done manually</p>
+  <style>
+    .button.reset.pill.b {
+      background: #ddd;
+      border-radius: 15px;
+      text-align: center;
+      height: 30px;
+      width: 70px; /* roughly how it would be */
+    }
+  </style>
+  <div class="button reset pill b">Label</div>
+</div>
+
+<h2>With Label and Icon</h2>
+
+<div class="example">
+  <style>
+    .button.reset.square-with-label::before {
+      pointer-events: none;
+      position: absolute;
+      display: block;
+      content: '+';
+      height: 16px;
+      width: 16px;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .button.reset.square-with-label {
+      background: #ddd;
+      padding: 10px 20px;
+    }
+  </style>
+  <div class="button reset square-with-label">Label</div>
+</div>
+
+<h2>Icon button</h2>

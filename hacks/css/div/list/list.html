@@ -1,0 +1,147 @@
+<meta charset="UTF-8">
+
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+
+  .reset, .reset:focus {
+    position: absolute;
+    outline: 0;
+    border: none;
+    background: none;
+    line-height: 1;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: Monaco;
+    /* can't change default width on input: http://stackoverflow.com/questions/7725426/remove-input-field-default-width */
+
+    color: #444;
+  }
+</style>
+
+<h2>List rows</h2>
+
+<div class="example">
+  <!--
+  - no icon
+  - two fields, one on left, one on right
+  -->
+  <style>
+    .list.default {
+
+    }
+  </style>
+  <div class="list">
+    <div class="list-row">
+      <div class="list-row-name">One</div>
+      <div class="list-row-type">Date</div>
+    </div>
+    <div class="list-row">
+      <div class="list-row-name">Two</div>
+      <div class="list-row-type">String</div>
+    </div>
+    <div class="list-row">
+      <div class="list-row-name">Three</div>
+      <div class="list-row-type">Array</div>
+    </div>
+    <div class="list-row">
+      <div class="list-row-name">Four</div>
+      <div class="list-row-type">Boolean</div>
+    </div>
+  </div>
+</div>
+
+<div class="example">
+  <!--
+  - no icon
+  - two fields, one on left, one on right
+  -->
+  <style>
+    .list.reset {
+
+    }
+    .list-row.reset {
+
+    }
+  </style>
+  <div class="list reset">
+    <div class="list-row reset">
+      <div class="list-row-name reset">One</div>
+      <div class="list-row-type reset">Date</div>
+    </div>
+    <div class="list-row reset">
+      <div class="list-row-name reset">Two</div>
+      <div class="list-row-type reset">String</div>
+    </div>
+    <div class="list-row reset">
+      <div class="list-row-name reset">Three</div>
+      <div class="list-row-type reset">Array</div>
+    </div>
+    <div class="list-row reset">
+      <div class="list-row-name reset">Four</div>
+      <div class="list-row-type reset">Boolean</div>
+    </div>
+  </div>
+</div>
+
+<div class="example">
+  <!--
+  - no icon
+  - two fields, one on left, one on right
+  - use flexbox
+  -->
+  <style>
+    .list.flex {
+      display: block;
+      width: 300px;
+    }
+    .list-row.flex {
+      border-top: 1px solid #333;
+      display: flex;
+      padding: 10px;
+    }
+    .list-row.flex:last-child {
+      display: flex;
+      border-bottom: 1px solid #333;
+    }
+    .list-row.flex::before {
+      content: '\260E';
+      width: 20px;
+      height: 20px;
+    }
+    .list-row-name {
+      padding-left: 10px;
+      flex: 1;
+    }
+    .list-row-type {
+      flex: 1;
+    }
+  </style>
+  <div class="list flex">
+    <div class="list-row flex">
+      <div class="list-row-name flex">One</div>
+      <div class="list-row-type flex">Date</div>
+    </div>
+    <div class="list-row flex">
+      <div class="list-row-name flex">Two</div>
+      <div class="list-row-type flex">String</div>
+    </div>
+    <div class="list-row flex">
+      <div class="list-row-name flex">Three</div>
+      <div class="list-row-type flex">Array</div>
+    </div>
+    <div class="list-row flex">
+      <div class="list-row-name flex">Four</div>
+      <div class="list-row-type flex">Boolean</div>
+    </div>
+  </div>
+</div>

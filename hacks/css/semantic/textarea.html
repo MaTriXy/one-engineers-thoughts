@@ -1,0 +1,69 @@
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+</style>
+
+<h2>Textarea</h2>
+
+<div class="example">
+  <style>
+    .textarea.default {
+
+    }
+  </style>
+  <textarea class="textarea default">Text</textarea>
+</div>
+
+<div class="example">
+  <style>
+    .textarea.reset {
+      resize: none;
+      border-radius: none;
+      outline: none;
+      border-color: none;
+      border-width: 0;
+      background: none;
+      position: static;
+      line-height: 1;
+      display: block;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      font-family: Arial;
+      font-size: 12px;
+    }
+  </style>
+  <textarea class="textarea reset">Text</textarea>
+</div>
+
+<div class="example">
+  <style>
+    /* can't change the look of the resize handle */
+    .textarea.reset.with-resize {
+      resize: both;
+    }
+  </style>
+  <textarea class="textarea reset with-resize">Text</textarea>
+</div>
+
+<h2>Square</h2>
+
+<div class="example">
+  <style>
+    .textarea.reset.square {
+      width: 200px;
+      height: 200px;
+      background: #ddd;
+      border: 1px solid #333;
+      padding: 10px;
+    }
+  </style>
+  <textarea class="textarea reset square">Text</textarea>
+</div>

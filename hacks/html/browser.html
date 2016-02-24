@@ -1,0 +1,78 @@
+<script>
+// var typeOf = require('component/type');
+var api = [];
+
+function getApis(data) {
+  var obj = data.value;
+  var name = data.name;
+  if (!obj) return;
+  try {
+    if (obj.__api_already_processed__) return;
+    Object.defineProperty(obj, '__api_already_processed__', { value: true, enumerable: false });
+  } catch (e) { return; }
+
+  if (obj == document.children[0]) console.log('yay')
+
+  try {
+    if (obj.constructor) {
+      if (obj.constructor != Function && obj.constructor != Object) {
+        if (obj.constructor && obj.constructor.__api_already_processed__) return;
+      }
+      Object.defineProperty(obj.constructor, '__api_already_processed__', { value: true, enumerable: false });
+
+      Object.getOwnPropertyNames(obj.constructor).forEach(function(key){
+        try {
+          addApi(obj.constructor.name, key, obj.constructor[key]);
+        } catch (e) {
+          console.log('obj.constructor.name error', e.stack);
+        }
+      });
+    }
+  } catch (e) {
+    // console.log('obj.constructor error', e)
+  }
+
+  Object.getOwnPropertyNames(obj).forEach(function(key){
+    if ('constructor' == key) return;
+    try {
+      addApi(name, key, obj[key], obj);
+    } catch (e){
+      console.log('obj error', e);
+    }
+  });
+}
+
+function addApi(name, key, value, obj) {
+  if (key != '__api_already_processed__') api.push(record(name, key, value));
+
+  switch (typeof value) {
+    case 'function':
+      // only if it's a constructor?
+      if (name.charAt(0).match(/[A-Z]/)) {
+        queue.push({ name: key, value: value });
+      }
+      break;
+    case 'object':
+      if (value) {
+        queue.push({ name: name + '.' + key, value: value });
+      }
+      break;
+  }
+}
+
+function record(sourceName, propName, value) {
+  var type = typeof(value);
+  return sourceName + '.' + propName;
+}
+
+var queue;
+setTimeout(function(){
+  queue = [ { name: 'window', value: window } ];
+  while (queue.length) getApis(queue.shift());
+  var map = api.reduce(function(memo, val){
+    memo[val] = true;
+    return memo;
+  }, {});
+  document.body.innerHTML = Object.keys(map).sort().join('<br/>');
+}, 500);
+</script>

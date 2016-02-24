@@ -1,0 +1,3 @@
+
+run:
+	@coqc basics.v

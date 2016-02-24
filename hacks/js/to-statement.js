@@ -1,0 +1,3 @@
+
+terms.map(Statement)
+

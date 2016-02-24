@@ -1,0 +1,23 @@
+<ol class="FeatureList u-center u-size5of12" u-space="top:large" u-copy="size:larger">
+  <li>Drop the Segment snippet into your site or app.</li>
+  <li>Track customer events like “viewed page” or “signed up”.</li>
+  <li>Turn on <a href="/integrations" m-link="">integrations</a> to forward data to all of your tools</li>
+</ol>
+
+.FeatureList > li::before {
+  content: counter(feature-list);
+  counter-increment: feature-list;
+  color: #5CCC5C;
+  font-size: 32px;
+  border: 2px solid;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+  line-height: 53px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

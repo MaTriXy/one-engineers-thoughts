@@ -1,0 +1,108 @@
+<meta charset="UTF-8">
+
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+
+  .reset, .reset:focus {
+    position: absolute;
+    outline: 0;
+    border: none;
+    background: none;
+    line-height: 1;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: Monaco;
+    color: #444;
+  }
+</style>
+
+<h2>Matrix (grid of boxes)</h2>
+
+<div class="example">
+  <style>
+    .matrix.float-left {
+      display: block;
+    }
+
+    .matrix.float-left::after {
+      content: '.';
+      visibility: hidden;
+      display: block;
+      clear: both;
+      height: 0;
+    }
+
+    .matrix-item.float-left {
+      display: block;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      float: left;
+
+      background: #ddd;
+      margin: 5px;
+    }
+
+    .matrix-item.float-left:nth-child(4n + 1) {
+      clear: both;
+    }
+  </style>
+  <div class="matrix float-left">
+    <div class="matrix-item float-left">One</div>
+    <div class="matrix-item float-left">Two</div>
+    <div class="matrix-item float-left">Three</div>
+    <div class="matrix-item float-left">Four</div>
+    <div class="matrix-item float-left">Five</div>
+    <div class="matrix-item float-left">Six</div>
+    <div class="matrix-item float-left">Seven</div>
+    <div class="matrix-item float-left">Eight</div>
+    <div class="matrix-item float-left">Nine</div>
+    <div class="matrix-item float-left">Ten</div>
+  </div>
+</div>
+
+<div class="example">
+  <style>
+    .matrix.inline-block {
+      display: inline-block;
+      max-width: 440px;
+    }
+
+    .matrix-item.inline-block {
+      position: relative;
+      height: 100px;
+      width: 100px;
+      text-align: center;
+      line-height: 100px;
+
+      background: #ddd;
+      margin: 5px;
+
+      display: inline-block;
+    }
+  </style>
+  <div class="matrix inline-block">
+    <!-- need to account for whitespace -->
+    <div class="matrix-item inline-block">One</div
+    ><div class="matrix-item inline-block">Two</div
+    ><div class="matrix-item inline-block">Three</div
+    ><div class="matrix-item inline-block">Four</div
+    ><div class="matrix-item inline-block">Five</div
+    ><div class="matrix-item inline-block">Six</div
+    ><div class="matrix-item inline-block">Seven</div
+    ><div class="matrix-item inline-block">Eight</div
+    ><div class="matrix-item inline-block">Nine</div
+    ><div class="matrix-item inline-block">Ten</div>
+  </div>
+</div>

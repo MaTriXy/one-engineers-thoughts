@@ -1,0 +1,48 @@
+<meta charset="UTF-8">
+
+<style>
+  .reset, .reset:focus {
+    position: absolute;
+    outline: 0;
+    border: none;
+    background: none;
+    line-height: 1;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: Monaco;
+    color: #444;
+  }
+</style>
+
+<style>
+  /* http://stackoverflow.com/questions/791231/css-sidebar-height-100 */
+  html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container.reset.default {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    background: #ddd;
+  }
+
+  .sidebar.reset.default {
+    margin-bottom: -10000px;
+    padding-bottom: 10000px;
+
+    width: 200px;
+
+    background: #444;
+  }
+</style>
+
+<div class="container reset default">
+  <div class="sidebar reset default"></div>
+</div>

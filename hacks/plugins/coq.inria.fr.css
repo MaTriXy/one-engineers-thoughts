@@ -1,0 +1,90 @@
+
+#content > p > span[style="font-weight:bold"] {
+  font-size: 20px;
+}
+
+/* code example */
+
+div.flushleft,
+pre.verbatim {
+  padding: 10px;
+  padding: 12px;
+  background: #eee;
+}
+
+div.flushleft > span,
+pre.verbatim {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: #222;
+  font-size: 12px !important;
+}
+
+div.flushleft span[style="font-style:italic"] {
+  font-style: normal !important;
+}
+
+/* lists */
+
+#content > ol.enumerate {
+  padding: 0px !important;
+  /*list-style-type: none;*/
+}
+
+#content > .itemize {
+  margin-left: 37px !important;
+  list-style-type: none;
+}
+
+p {
+  text-indent: 0px !important;
+}
+
+#content > .itemize > .li-itemize > p,
+#content > .itemize > .li-itemize > ol,
+#content > .itemize > .li-itemize > ul,
+#content > .itemize > .li-itemize > div {
+  margin-left: 20px;
+  text-indent: 0px !important;
+}
+
+span[style="font-family:monospace"],
+span[style="font-style:oblique"],
+sub {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+  color: #222;
+  font-size: 12px !important;
+  background: #eee;
+  padding: 3px;
+}
+
+#content > ul > .li-enumerate,
+#content > ol > .li-enumerate {
+  margin-top: 30px;
+}
+#content > ul > .li-enumerate:first-child
+#content > ol > .li-enumerate:first-child {
+  margin-top: 10px;
+}
+
+h2.section {
+  background: none !important;
+  font-size: 32px !important;
+  border-top: 1px solid #ddd;
+  padding-top: 40px !important;
+  line-height: 40px !important;
+}
+
+h3.subsection {
+  padding-top: 40px;
+  font-size: 24px;
+  border-top: 1px solid #ddd;
+}
+
+h3.subsection > * {
+  font-size: 24px !important;
+}
+
+.section + .subsection {
+  padding-top: 20px;
+  border-top: none;
+}

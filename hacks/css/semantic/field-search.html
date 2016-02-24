@@ -1,0 +1,120 @@
+<meta charset="UTF-8">
+
+<style>
+  .example {
+    border-top: 1px solid #ddd;
+    position: relative;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+
+  .reset {
+    font-family: Monaco;
+    position: absolute;
+    background: none;
+    text-align: left;
+    line-height: 1;
+    display: block;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+
+    color: #444;
+    /* can't change default width on input: http://stackoverflow.com/questions/7725426/remove-input-field-default-width */
+  }
+
+  .reset:focus {
+    outline: 0;
+  }
+</style>
+
+<h2>Search field</h2>
+
+<h3>Default</h3>
+
+<div class="example">
+  <!--
+  - use sprite, but tied to image
+  - desired, is to have input fill the width, and use a wrapper to specify it's width
+   -->
+  <style>
+    .search-field {
+      border: 1px dashed #333;
+      position: relative;
+    }
+    .search-field::before {
+      position: absolute;
+      content: '\26B2';
+      display: block;
+      line-height: 1;
+      height: 20px;
+      width: 20px;
+      left: 10px;
+      top: 50%;
+      /* order of operations is important */
+      transform: translateY(-60%) rotate(-45deg);
+    }
+    .search-field-input {
+      padding-left: 30px;
+    }
+  </style>
+  <div class="search-field">
+    <input class="search-field-input" type="text" placeholder="Search">
+  </div>
+</div>
+
+<h3>Reset</h3>
+
+<div class="example">
+  <div class="search-field reset">
+    <input class="search-field-input reset" type="text" placeholder="Search">
+  </div>
+</div>
+
+<h3>No width</h3>
+
+<div class="example">
+  <style>
+    .search-field.background::before {
+      font-size: 18px;
+    }
+    .search-field.background {
+      position: relative; /* makes the height work correctly */
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+    .search-field-input.background {
+      line-height: normal;
+      position: relative;
+      height: 30px;
+      width: 200px;
+    }
+  </style>
+  <div class="search-field background">
+    <input class="search-field-input reset background" type="text" placeholder="Search">
+  </div>
+</div>
+
+<h3>Explicit width</h3>
+
+<div class="example">
+  <style>
+    .search-field.background.b {
+      display: inline-block;
+    }
+    .search-field-input.background.b {
+
+    }
+  </style>
+  <div class="search-field background b">
+    <input class="search-field-input reset background b" type="text" placeholder="Search">
+  </div>
+</div>
+
+<!--
+box-sizing: border-box;
+-->

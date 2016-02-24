@@ -1,0 +1,125 @@
+
+/**
+ * Goal is to get everything down to records.
+ *
+ * use anything "related" to record. derives from record, or derives to record.
+ * therefore, have a "concept" or "construct" record that is
+ * composed of all the things that go into the record: term + record + pattern
+ * or maybe that is part of the "definition" object, or "model" of the thing.
+ *
+ * So it constructs a set of "models" for each record.
+ * The model tells how to use terms, and how it is represented for math and computer.
+ *
+ * The question is, how do you construct all these models efficiently?
+ * They are slowly built up iteratively, but what else?
+ *
+ * As it's "exploring" or "looking around the term trees",
+ * it is slowly piecing together the models.
+ *
+ * Once it has the models, then it uses the model to construct an instance of the record.
+ *
+ * Terms -> Models -> Instances of Records.
+ *
+ * Or maybe instead of "models" it's a "derivation".
+ *
+ * Symbols -> Terms -> Derivations -> Records
+ *
+ * The records can then be used by the implementation directly as a first step.
+ *
+ * Each term tree can be one of four things then. It can be a `record`,
+ * a `term`, a `pattern`, or *anything not those*. So, if the term matches those
+ * special ones used in the derivation, it creates a derivation for them, and assigns it's term to it.
+ *   - if 'record' == term.name
+ *      - if 'from' == term.children[1].name
+ *        - derivation.recordFromTerm = term;
+ *      - else
+ *        - derivation.record = term;
+ *   - else if 'pattern' == term.name
+ *      - if 'from' == term.children[1].name
+ *        - derivation.patternFromRecord = term;
+ *      - else
+ *        - derivation.pattern = term;
+ *   - else if 'term' == term.name
+ *      - derivation.term = term;
+ *   - else // because all things can be transformed to records, through their term, to the record
+ *      - if 'from' == term.children[1].name
+ *        - derivation.xFromTerm = term;
+ *      - else
+ *        - derivation.x = term;
+ *
+ * Once you have all of these `derivations`, then you can
+ * use them to generate records. Then you have all terms as records.
+ *
+ * Once you have all terms as records, you can find the "start action" record.
+ * Then you need a generic way to implement the actions.
+ *
+ * All term names can be represented as a 16bit number, which there are 65,000.
+ * This means you can do super fast comparison to do pattern matching.
+ * If the model starts to exceed that level, then it will fallback to 32bit numbers, then to 64bit
+ */
+
+function encode(input) {
+  let { observations } = agent;
+  // 1. first pass, just capture whether it's natural language or formal language.
+  separateNaturalAndFormal(input);
+  // 2. out of the formal ones, the "terms", just capture their first term.
+  captureFirstTerm(input);
+  // 3. now that we have the top-level terms, find the `term` terms, and anything with a `from term` in it?
+  //  we don't have an index from that yet
+  //   3a. maybe, for each "first" term, go through and find any `from`, and treat those as "derives", only if second child term n(2, 2).
+  captureDerives(input);
+  // 4. construct the records
+  // 5. construct the things built on top of records
+
+  return agent;
+}
+
+/**
+ * This happens before files are actually
+ * even converted to terms.
+ *
+ * This is like the parsing stage, but it can work for any language.
+ */
+
+function separateNaturalAndFormal(input) {
+  let { observations } = agent;
+  let natural = observations.natural = {};
+  let formal = observations.formal = {};
+  mapTerms(input, function(term){
+    observations.formal = term;
+  });
+}
+
+function captureFirstTerm(input) {
+  let { observations } = agent;
+  let terms = observations.terms = {};
+  mapTerms(input, function(term){
+    let collection = terms[term.name] = terms[term.name] || [];
+    collection.push(term);
+  });
+}
+
+function captureDerives(input) {
+  let { observations } = agent;
+  Object.keys(observations.terms).forEach(function(key){
+    let collection = observations.terms[key];
+    collection.derives = {};
+    collection.forEach(function(term){
+
+    });
+  });
+}
+
+function mapTerms(input, fn) {
+  var terms = [];
+  input.files.forEach(function(file){
+    file.terms.forEach(function(term, i){
+      var success = fn(term, i);
+      if (success) terms.push(term);
+    });
+  });
+  return terms;
+}
+// model language is a non-procedural programming languages, so essentially a "modeling language".
+// Subtree Matching PDA (SMPDA) solving Problem
+// you could debug by just executing the tree state machine each frame, showing the steps directly mapping to the terms!

@@ -1,0 +1,128 @@
+
+record relation
+  field a
+  field b
+
+record action
+  field variables
+  field changes
+
+1
+  1
+  2
+    1
+  2
+    2
+
+1
+  3
+  2
+    3
+  2
+    4
+
+a1b2
+depth-value-depth-value, all with integers under 65k...
+tree depth max of 100 perhaps, but configurable.
+so you can have terms 100 deep
+this means overall size of file would be smaller b/c
+of smaller numbers
+1 1 2 1 2 2 3 1 2 2 3 2
+or, since you know their position, you know
+"odd" are depth, "even" are value! Then they can share the same numbers, unlimited depth!
+1 2 9812 3192 2
+The tree would just be numbers like that!
+Then pattern matching the tree would have to know the specific order.
+Therefore terms would have to be sorted in a standard way.
+So it could jump by certain number of columns, and the tree still matches.
+Basically just a position in this array, offset.
+
+So it would have to do all top rows first,
+Then all second rows.
+Then all third rows....
+1 1 2 1 2 2 2 2 3 1 3 2
+But then it needs to know the parent that it came from.
+So maybe it would have to store an additional number for the parent.
+
+// this should be the "encoding" phase,
+// encoding the characters into tree patterns
+[(0 1 1)] [(1 2 1) (1 2 2) (1 2 2)] [(2 3 1) (3 3 2)] // the third index of the parents
+
+// then the next phase, is recognizing these patterns, "bringing them to mind",
+// creating an image from them in your head.
+
+// then the last phase is, using those images to take action, to perform intelligent action.
+// this happens after the pattern recognition, "perception" part.
+
+This would mean that the when the code changes, it just updates this low-level tree structure.
+Then when that low-level tree structure changes, it requires re-deriving anything related to it.
+But by then it's only dealing with 64 bit numbers in an in-memory tree data structure, possibly later distributed.
+
+// use these for pattern matching in the terms.
+// the `term` is a pattern recognizer for the `action` or other "trees".
+// the association or recognizer for this is based on the relation between them
+// but before it can even understand those, it needs to find a simpler approach:
+// 1. look for `term`, encode as tree
+// 2. just from that information, create a recognizer for all terms matching that pattern.
+// 3. use that recognizer to find all the trees based on what those terms encode
+// 4. it has recognized them, but hasn't "constructed" them (transformed into records), so by here there is a pointer to the term definition, still all just trees
+// 5. for each record pointer, find look for a nearby or existing `record x, from term y` template
+// 6. create a third pointer to that term
+// 7. this 3 pointer configuration creates a derivation/proof
+// 8. validate the proof
+// 9. build a pattern recognizer for things deriving from records.
+// 10. create a pointer to them
+// 11. verify the transformation
+// 12. construct the record
+
+// character->recognizer // pointer from place in file, to recognizer generated from it, if term
+// character->tree->recognizer from `term`
+// so need to have generated a recognizer from that term definition
+// use recognizers to find matches of terms in trees
+// from `term`, have recognizer for everything
+// anything that doesn't have a recognizer, can say "problem term does not exist for x", and add it to your list of todos
+// end up pointing terms to things they recognize
+// but still don't have any useful derivations
+// now look for special `record` ones, we want to derive to records
+// the relation is the term matching `record x, from term x`
+// since we already have the trees, we can do tree matching by template!
+// `find record x, from term x`
+// `template x, record x, from term x`
+// `find x, y, template y x, from term x`
+// we say "these represent a transformation between record and term"
+// "anything of this 'form' is used to transform term to y".
+// so then it says the relation between the `y x` and `y x, from term x`.
+// based on derivation rules,
+// we can transform `term x` to `y x`.
+// so when we see that term used somewhere,
+// we know it actually represents this record.
+// the "term pattern recognizer" is used to find where the term is _used_ in the wild.
+// once it finds a usage, it "knows" it is a record automatically, it "remembers".
+// that "intelligent memory" only exists because we said the specific representation:
+// terms matching `find x, y, template y x, from term x` means `y x` is derivable from `term x`.
+// we only perform this step of "mapping terms to record" because it provides
+// a standard way of working with data in an easy to understand format.
+// this doesn't mean it is required. It can be further transformed,
+// or this process can be entirely skipped. But for simplicity, this is a good place to start.
+//
+// therefore, patterns to match in generic tree:
+// tree pattern matching:
+// let terms, find term
+// let records, find x, template record x
+// let derivations, find x, y, template x y, from term y
+// visit matching(term, record, derivation), in terms, records, derivations
+//   derive record, term, derivation
+//
+// this generic `find` is key, it looks up in the model space
+
+// let derivations, find x, y, template x y, from term y
+// visit derivation, in derivations
+//   let term, find x, template term x
+//   let record, find x, template record x
+//   derive record, from term, using derivation
+
+action derive, in js
+  assume record
+  assume term
+  assume derivation
+  call record, term, derivation // then do it in javascript?

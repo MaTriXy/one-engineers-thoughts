@@ -1,0 +1,2 @@
+
+file_get_size_in_bytes

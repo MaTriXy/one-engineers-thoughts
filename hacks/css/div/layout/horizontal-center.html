@@ -1,0 +1,38 @@
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+
+  .reset {
+    border-radius: none;
+    outline: none;
+    border-color: none;
+    border-width: 0;
+    background: none;
+    position: static;
+    line-height: 1;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: Arial;
+  }
+</style>
+
+<h2>Horizontal center with `margin: 0 auto`, works with explicit widths</h2>
+
+block:
+  margin: 0 auto;
+  width: explicit;
+
+inline:
+  text-align: center;
+
+fluid:
+  http://designshack.net/articles/css/how-to-center-anything-with-css/

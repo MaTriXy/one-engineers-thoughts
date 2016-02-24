@@ -1,0 +1,62 @@
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+</style>
+
+<!--
+
+  - http://stackoverflow.com/questions/1391278/contenteditable-change-events
+
+-->
+
+<h2>Textarea div</h2>
+
+<div class="example">
+  <style>
+    .textarea.reset {
+      resize: none;
+      border-radius: none;
+      outline: none;
+      border-color: none;
+      border-width: 0;
+      background: none;
+      position: static;
+      line-height: 1;
+      display: block;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      font-family: Arial;
+      font-size: 12px;
+    }
+  </style>
+  <div class="textarea reset" contenteditable tabindex="-1" oninput='console.log(event.target.innerText);'>Text</div>
+</div>
+
+<div class="example">
+  <style>
+    .textarea.reset.with-resize {
+      width: 200px;
+      height: 200px;
+      background: #ddd;
+      border: 1px solid #333;
+      padding: 10px;
+      border-radius: 3px;
+    }
+    .textarea.reset.with-resize:focus {
+      box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    }
+    /* can't change the look of the resize handle */
+    .textarea.reset.with-resize {
+      resize: both;
+    }
+  </style>
+  <div class="textarea reset with-resize" contenteditable tabindex="-1">Text</div>
+</div>

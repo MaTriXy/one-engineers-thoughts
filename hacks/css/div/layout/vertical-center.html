@@ -1,0 +1,174 @@
+<style>
+  .example {
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding: 50px 0px;
+  }
+
+  .example:nth-child(1) {
+    border-top: none;
+  }
+
+  .reset {
+    border-radius: none;
+    outline: none;
+    border-color: none;
+    border-width: 0;
+    background: none;
+    position: static;
+    line-height: 1;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: Arial;
+  }
+</style>
+
+<h2>Vertical Centering with line-height</h2>
+
+<div class="example">
+  <!-- padding has no impact, so should be set to 0 -->
+  <style>
+    .reset.display-inline {
+      background: #ddd;
+      color: #333;
+      display: inline;
+      padding: 0px;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <div class="reset display-inline">Text</div>
+</div>
+
+<div class="example">
+  <!-- padding causes it to grow outside of its layout, which is very bad, but may be useful in some cases? -->
+  <!-- also, selecting the text with display inline is offset by the padding, so just avoid. -->
+  <!-- could be useful for adding a bit of a border to inline text elements tho, like code blocks -->
+  <style>
+    .reset.display-inline.with-padding {
+      background: #ddd;
+      color: #333;
+      display: inline;
+      padding: 20px;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <div class="reset display-inline with-padding">Text</div>
+</div>
+
+<div class="example">
+  <style>
+    .reset.display-inline-block {
+      background: #ddd;
+      color: #333;
+      display: inline-block;
+      padding: 10px;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+    }
+  </style>
+  <div class="reset display-inline-block">Text</div>
+</div>
+
+<div class="example">
+  <style>
+    .reset.display-block {
+      background: #ddd;
+      color: #333;
+      display: block;
+      padding: 10px;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+    }
+  </style>
+  <div class="reset display-block">Text</div>
+</div>
+
+<div class="example">
+  <style>
+    .reset.display-block.vertical-and-horizontal-center {
+      background: #ddd;
+      color: #333;
+      display: block;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+    }
+  </style>
+  <div class="reset display-block vertical-and-horizontal-center">Text</div>
+</div>
+
+<h2>Vertical Centering with display: table-cell</h2>
+
+<div class="example">
+  <style>
+    .reset.display-table-cell {
+      background: #ddd;
+      color: #333;
+      display: table-cell;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+    }
+  </style>
+  <div class="reset display-table-cell">Text</div>
+</div>
+
+<div class="example">
+  <style>
+    .reset.display-table-cell.vertical-and-horizontal-center {
+      background: #ddd;
+      color: #333;
+      display: block;
+      width: 100px;
+      height: 100px;
+      display: table-cell;
+      text-align: center;
+    }
+  </style>
+  <div class="reset display-table-cell vertical-and-horizontal-center">Text</div>
+</div>
+
+<h2>Vertical Centering with display: table-cell and css content</h2>
+
+<div class="example">
+  <!-- use if you want content to not be selectable, such as with icons -->
+  <style>
+    .reset.display-table-cell.content::before {
+      content: 'Text';
+    }
+    .reset.display-table-cell.content {
+      background: #ddd;
+      color: #333;
+      display: table-cell;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+    }
+  </style>
+  <div class="reset display-table-cell content"></div>
+</div>
+
+<div class="example">
+  <style>
+    .reset.display-table-cell.vertical-and-horizontal-center.content::before {
+      content: 'Text';
+    }
+    .reset.display-table-cell.vertical-and-horizontal-center.content {
+      background: #ddd;
+      color: #333;
+      display: block;
+      width: 100px;
+      height: 100px;
+      display: table-cell;
+      text-align: center;
+    }
+  </style>
+  <div class="reset display-table-cell vertical-and-horizontal-center content"></div>
+</div>
