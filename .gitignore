@@ -1,0 +1,11 @@
+.DS_Store
+.vagrant
+*.out
+*.lst
+*-exec
+*.vo
+*.glob
+*.cmo
+*.cmi
+nom/
+*.v\#

@@ -1,0 +1,7 @@
+
+## what music do software engineers listen to?
+
+- Tweet out form where they can select favorite bands perhaps, or what they are currently listening to. Maybe it's a longer term study, where they download the app, and it listens to what they are doing.
+- Show the public the results
+- Host on lancepollard.com, my blog where I run experiments and overanalyze things. I have been told all my life that I overanalyze things. My dad at thanksgiving dinner in 2015 even told me that I am totally lost and hopeless, that I need to stop thinking so much and get a normal job, relax a little. My mom committed suicide when I was 15, and my younger brother was 13. For some reason this keeps me going, to try to simplify knowledge so I can understand everything, and everyone else can too. It's possible to understand everything, and for it to be easy to understand. With this knowledge, we can do or be anything, and be permanently happy: able to learn to solve any problem we want. This will mean people can communicate better, and be happy. We can do what needs to be done, and nothing more or less. We live as we want to, while helping others do the same.
+- With this, would have a better model of how engineers brain's work. Why are they better at coding? Does better coding mean your brain likes electronic music for some reason? Would make connections of sound processing to brain adaptability or something.

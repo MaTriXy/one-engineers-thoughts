@@ -1,0 +1,17 @@
+- break a task up into smaller ones
+  - how do you break it up?
+- add your tasks right now
+  - since a task is a solution, at meetings you're specifying solutions
+    - but the best way to find solutions is while you're problem solving
+- getting it done
+  - the reason "done" doesn't make sense is because problem/solution space keeps evolving
+  - "done" mean's you've implemented a solution
+  - Why "done" isn't done.
+- "how does this connect to that? i'm not quite seeing it"
+  - someone else has imagined an end state, but you don't see how they got there
+    - they saw a problem, and came up with a solution, which is that end state
+- "this way you could do x"
+  - assuming x is an important thing to do (is in the desired space)
+- things we're thinking in the middle of it:
+  - what does it _do_? imaging in your mind how it might work given your current knowledge and your alignment to make it easier and such
+  - how does it work in your mind? visualizing the potential end state

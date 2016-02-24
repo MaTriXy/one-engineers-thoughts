@@ -1,0 +1,51 @@
+- decidability
+- undecidability
+- computability
+- definability
+- deterministic program?
+- termination?
+- well-founded relation
+- well-founded set
+- well-founded recursion
+- minimal element
+- least closed set
+- least set
+- closed set
+- rule induction
+- type reflection
+- effectively decidable
+- effectively enumerable
+- invariant
+- safety property: for all computations of the system, and all instances of time, some property will invariably hold
+- liveness property: eventually a certain state will be reached
+- persistance property: after a certain point, a certain property will always hold
+- djikstra weakest precondition
+- fixedpoint characterization of invariants
+- modal logic
+- kripke structures
+- interpretation of formula
+- every program can be converted to kripke structures
+- compactness property
+- semi-decidability
+- unification
+- completeness
+- consistency
+- soundness
+- well defined
+- monotonicity
+- cut rule
+- how to prove decidability
+- halting (is it termination?)
+- decidability algorithm
+- decidable === effectively solvable
+- independence https://en.wikipedia.org/wiki/Axiom_independence
+  - http://math.stackexchange.com/questions/332354/how-does-one-show-a-set-of-axioms-is-independent-of-each-other
+- embedding
+- dependent elimination
+- formation
+- introduction
+- induced width
+- generalized substitutions
+- bisimulation
+- closure
+- transitive closure

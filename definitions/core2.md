@@ -1,0 +1,1 @@
+core is the trinity

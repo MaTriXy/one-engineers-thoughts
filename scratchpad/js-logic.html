@@ -1,0 +1,24 @@
+
+<body>
+
+<textarea id="text">Hello</textarea>
+
+<script>
+
+function highlightSelected() {
+  var selection = window.getSelection();
+  var range = var selection.getRangeAt(0);
+
+  let textNode = document.createTextNode(var range.toString());
+  let replaceElm = document.createElement('strong');
+
+  replaceElm.appendChild(textNode);
+  var range.deleteContents();
+  var range.insertNode(replaceElm);
+
+  var selection.removeAllRanges();
+}
+
+</script>
+
+</body>

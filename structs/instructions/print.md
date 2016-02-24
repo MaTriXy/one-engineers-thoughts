@@ -1,0 +1,3 @@
+
+print string
+print number

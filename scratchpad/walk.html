@@ -1,0 +1,340 @@
+
+<style>
+  body, html {
+    padding: 0px;
+    margin: 0px;
+    font-family: monospace;
+  }
+
+  #main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #view {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    align-content: stretch;
+  }
+
+  #word {
+    display: block;
+    padding: 8px 15px;
+    width: 100vw;
+    font-size: 16px;
+    font-family: monospace;
+  }
+
+  .tile {
+    display: block;
+    padding: 15px;
+    flex: 1;
+    font-size: 16px;
+    tab-size: 2;
+    font-family: monospace;
+    /* http://stackoverflow.com/questions/6023307/dealing-with-line-breaks-on-contenteditable-div */
+    /*white-space: pre;*/
+  }
+</style>
+
+<body id="main">
+  <div id="view">
+    <textarea id="tree" class="tile"></textarea>
+    <textarea id="mind" class="tile"></textarea>
+  </div>
+  <div id="line">
+    <input id="word"/>
+  </div>
+</body>
+
+<script>
+
+var tree = document.querySelector('#tree');
+var bank = {};
+
+function main() {
+  bind('mind', keep);
+  bind('word', walk);
+
+  // when_up('mind', span_mind);
+  //
+  // cmd+tab  === task pane == move tile
+  // cmd+right == task step rite (good) (move thru good)
+  // cmd+left === task step left (vile) (move thru vile)
+  // cmd+up   === task step high (mind) (move thru mind)
+  // cmd+down === task step deep (soul) (move thru soul)
+  // <lack>   === task skip/stay (home) (dont move)
+  // 5, based on those 4 moves and the 1 stay.
+  // only pick 1 per play?
+  // cmd+t    === task make ? lock into focus point?
+  // cmd+s or cmd+space === task sleep/dream (start just exploring the space for you perhaps? find something interesting for you)
+  // focuses in on one thing, and then loops relative to that thing
+  //
+  // move through past, this, fate? (mind and soul of time)
+  // find a new focus point (select it, then command enter, `task move`)
+  //
+  // cmd+enter == task make core (set focus point, the center of the ball, "center == call enter")
+  //
+  // cmd+z === back (last time/step)
+  // cmd+shift+z === forward (next time/step)
+  //
+  // cmd+shift+arrow === select/focus/highlight/line/capture/cover/[span]
+  //
+  // (cmd+shift+arrow)
+  // task flip step === span face (one of four directions in tile mesh)
+  // task step === roll dice (one of four directions in cube mesh?)
+  // (cmd+arrow)
+  //
+  // (swipe touch on iphone)
+  //
+  // task
+  //
+  // cmd+t == tune jump
+  // cmd+f == find
+  // cmd+w == close tile/window
+  // cmd+delete == close window
+  // cmd+enter == focus in current window, or go back
+  // cmd+shift+enter === make new window
+  // cmd+tab == move through windows
+  // cmd+t == jump to search input below, to "task mode"
+  // cmd+t == jump back to where you last left off
+  // cmd+p == jump to view mode, "play mode"
+  //
+  // remember 180 count in each direction, for time, so you can go back, but not super far. it will then show you, where do you want to leave off sorta thing? after 180 it loses its trace
+}
+
+function when_up(verb, play) {
+  var node = find(view);
+  node.onkeyup = function(event) {
+    if (!event.metaKey) return;
+    if (event.keyCode === 38) {
+      // up
+      play();
+    }
+  };
+}
+
+/**
+ * This should be implemented in the term language. But for now tried to hack it.
+ */
+
+function span_mind() {
+  var mind = load('mind');
+  var mode = read('mode') || 0;
+  var next = mode++;
+  if (next > 5) next = 0;
+  keep('mode', next);
+
+  switch (next) {
+    case 0:
+      break;
+
+    case 1:
+      break;
+  }
+}
+
+function keep(text) {
+  // TODO: better insertion method into associative mind
+  localStorage.setItem('mind', text);
+}
+
+function walk(word) {
+  rise(word);
+  // TODO: should be a trie or something, for fast 1-character walking
+  var mind = load('mind');
+
+  walk_left(word, mind);
+  walk_rite(word, mind);
+
+  fall(word);
+}
+
+function walk_rite(word, mind) {
+  var past = '';
+  word.split('').reverse().forEach(function(tone){
+    var part = tone + past;
+    past = part;
+
+    mind.forEach(function(lone){
+      if (part.length === lone.length) return; // same as word
+      var spot = lone.indexOf(part);
+      if (spot < 0) return;
+      is_rite(part, lone, word);
+    });
+  });
+}
+
+function walk_left(word, mind) {
+  // for each character, see if you can find a word that starts with that.
+  // TODO: how to do this actual algorithm?
+  var past = '';
+  word.split('').forEach(function(tone){
+    tone // loan?
+    var part = past + tone;
+    past = part;
+
+    mind.forEach(function(lone){
+      if (part.length === lone.length) return;
+      var spot = lone.indexOf(part);
+      if (spot < 0) return;
+      is_left(part, lone, word);
+    });
+  });
+}
+
+function bind(view, task) {
+  var node = find(view);
+  var text = read(view);
+  if (text) node.value = text;
+  node.onkeyup = function(event){
+    task(node.value);
+  };
+}
+
+function read(view) {
+  return localStorage.getItem(view);
+}
+
+function find(view) {
+  var node = document.querySelector('#' + view);
+  return node;
+}
+
+function same(left, rite) {
+  return left === rite;
+}
+
+function size_string(left, rite) {
+  return left.length + rite.length;
+}
+
+function is_rite(part, term, word) {
+  show('\t\t' + part + '\t\t\t\t' + term);
+  hold_rite(word, part, term);
+}
+
+function is_left(part, term, word) {
+  if (term === word) {
+    show('[' + part + '\t\t\t\t' + term + ']');
+  } else {
+    show(part + '\t\t\t\t' + term);
+  }
+  hold_left(word, part, term);
+}
+
+function hold_rite(word, part, term) {
+  var note = hold(bank, word);
+  hold(note.rite, part, term);
+}
+
+function hold_left(word, part, term) {
+  var note = hold(bank, word);
+  hold(note.left, part, term);
+}
+
+function hold(node, word, term) {
+  var note = node[word] = node[word] || { rite: {}, left: {}, flag: {} };
+  if (term) note.flag[term] = true;
+  return note;
+}
+
+function show_call(name, left, rite) {
+  show(name + '(' + left + ', ' + rite + ')');
+}
+
+function show(text) {
+  // tree.value += '\n' + text;
+  tree.value = text;
+}
+
+function rise(kite) {
+  tree.value = kite + '\n';
+}
+
+function fall(bite) {
+  var node = bank[bite];
+  var hold = {};
+  debugger
+
+  loop(node.left, function(left){
+    if (left === bite) return;
+    loop(node.rite, function(rite){
+      if (rite === bite) return;
+      var term = left + rite;
+      if (term !== bite) return;
+      var a = node.left[left].flag;
+      var b = node.rite[rite].flag;
+      loop(a, function(left_term){
+        loop(b, function(rite_term){
+          var root = hold[left_term] = hold[left_term] || {};
+          root[rite_term] = true;
+          // keep(hold, 'pair(' + left_term + ', ' + rite_term + ')');
+        });
+      });
+    });
+  });
+
+  var text = [];
+
+  loop(hold, function(left){
+    // text.push(left);
+    loop(hold[left], function(rite){
+      keep(text, left + ' ' + rite);
+      keep(text, '\n');
+    });
+    keep(text, '\n');
+  });
+
+  show(bite + '\n\n' + text.join(''));
+  // show(bite + '\n\n' + hold.join('\n'));
+
+  function keep(hold, note) {
+    hold.push(note);
+  }
+}
+
+function loop_pair(left, rite, call) {
+  loop(left, function(left_name){
+    loop(rite, function(rite_name){
+      return call(left_name, rite_name, left, rite);
+    });
+  })
+}
+
+function loop(node, call) {
+  list(node).forEach(call);
+}
+
+function list(node) {
+  return Object.keys(node);
+}
+
+function load(view) {
+  return read(view)
+    .split('\n')
+    .filter(function(value){ return !!value; });
+}
+
+function pick_sort() {
+  // insert order (plot sort)
+  // rime sort
+  // fork sort
+  // ...?
+  //
+  // use asdf and jkl; for 2 player game! you can press both keys at the same time or independently to act as a parallel system. like a song.
+  //
+  // seems like there should only be 4 moves, and a total of 6 plays.
+  // you can move 4 directions from your current direction.
+  // you can feel good or poor (1), and be in mind/peer/soul (3)
+  // but on a "regular basis" you only have 4 directions to go. stay, or or move in 1 of 4 directions (5)? or 1 of 6 (7).
+  //
+  // left or rite is focus point? rite is out, left is in
+}
+
+</script>
+
+<script>main();</script>

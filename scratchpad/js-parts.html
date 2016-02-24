@@ -1,0 +1,359 @@
+
+<body class='grid'>
+<style>
+
+.tile {
+  width: 5px;
+  height: 5px;
+  background: #282828;
+}
+
+.grid .tile {
+  display: inline-block;
+  margin: 1px;
+}
+
+</style>
+<script>
+
+function js_make_page() {
+  var canvas = document.createElement('canvas');
+  var context = canvas.getContext('2d');
+  var page = {
+    canvas: canvas,
+    context: context
+  };
+  return page;
+}
+
+function js_make_tile() {
+  return { type: 'tile' };
+}
+
+function js_draw_tile(page, tile) {
+  js_draw_tile_fill(page, tile);
+  js_draw_tile_edge(page, tile);
+}
+
+function js_draw_tile_fill(page, tile) {
+  if (!tile.fill) return;
+  var ctx = page.context;
+  ctx.fillStyle = tile.fill.style;
+  ctx.fillRect(tile.x, tile.y, tile.width, tile.height);
+}
+
+function js_draw_tile_edge(page, tile) {
+  if (!tile.stroke) return;
+  var ctx = page.context;
+  ctx.strokeStyle = tile.stroke.style;
+  ctx.lineWidth = tile.stroke.width;
+  ctx.strokeRect(tile.x, tile.y, tile.width, tile.height);
+}
+
+function js_make_loop() {
+
+}
+
+function draw_example_button(page, tile, i, factor) {
+  var pile = i * 8; // column
+  var line = 0;// row
+
+  if (i > window.innerWidth)
+  tile.x = window.innerWidth % (i * 8);
+  tile.y = window.innerWidth % (i * 8) % (i * factor);
+  js_draw_tile(page, tile);
+}
+
+function make_example_button() {
+  var tile = js_make_tile();
+  tile.width = 7;
+  tile.height = 7;
+  tile.fill = { style: 'black' };
+  return tile;
+}
+
+function main() {
+  var page = js_make_page();
+  var ctx = page.canvas;
+  ctx.width = window.innerWidth;
+  ctx.height = window.innerHeight;
+  show_element(page.canvas);
+  var mesh = read(10000, make_example_button);
+  var note = 0;
+  draw_page(page, next);
+
+  function next() {
+    note++;
+    wipe(page);
+    walk(mesh, step);
+    draw_page(page, next);
+
+    function step(tile, i) {
+      draw_example_button(page, tile, note + i, note + i % 7);
+    }
+  }
+}
+
+function walk(tree, step) {
+  tree.forEach(step);
+}
+
+function wipe(page) {
+  var canvas = page.canvas;
+  var ctx = page.context;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function read(time, grab) {
+  var feed = [];
+  loop(time, bite);
+  return feed;
+
+  function bite(i) {
+    var food = grab(i);
+    grub(feed, food);
+  }
+}
+
+function grub(hold, note) {
+  hold.push(note);
+}
+
+function loop(time, call) {
+  for (var i = 0; i < time; i++) {
+    call(i);
+  }
+}
+
+function draw_page(page, call) {
+  next_view(call);
+}
+
+function next_view(call) {
+  requestAnimationFrame(call);
+}
+
+function show_element(element) {
+  document.body.appendChild(element);
+}
+
+function keep_type(name, element) {
+
+}
+
+function play(game, peer, note) {
+  hear(game, peer, note);
+}
+
+/**
+ * Hear is assignment for a mind.
+ *
+ * Hear is a complex process. It means feeling at the cell layer,
+ * seeing at the view layer, and mentally taking note based on self view (cell view mind)
+ */
+
+function hear(game, bard, note) {
+  feel(game, bard, note); // cell level
+  sing(game, bard, note); // peer level, now bard can sing again
+  keep(game, bard, note); // mind level
+}
+
+function feel(game, king, note) {
+  each(game, test);
+
+  function test(peer) {
+    var deal = peer % king;
+
+    when(lone(deal), 'the note they together *should* make, but they might not be able to make it perhaps b/c of the current state they are in');
+    when(best(deal), kite()); // second day of creation
+    when(tree(deal), mite()); // third day
+    when(four(deal), site()); // fourth day
+    when(five(deal), fite()); // fifth day
+    when(sync(deal), bite()); // sixth (sync) day
+    when(view(deal), nite()); // seventh day
+    when(seat(deal), nite()); // eighth day
+
+    // so it looks like they go to sleep only when they reach a stable point in the game.
+  }
+}
+
+function lone(note) {
+  return note === 1;
+}
+
+/**
+ * True, two, best?
+ */
+
+function best(note) {
+  return note === 2;
+}
+
+/**
+ * Self vs. king.
+ *
+ * Both are pawns in a game.
+ *
+ * This is the mathematical storage of information bits in a memory.
+ *
+ * jack (plug, queen mate)
+ * bard
+ * king (doesnt have to be male, just queen is gendered, women or men are kings, wifes are mothers of earth, wifes move earth there.)
+ *
+ * wife (queen)
+ * male
+ * wise
+ * sage
+ * teen
+ * tike
+ *
+ * nite (seven -> sven -> (medieval swedish for "squire") -> knight -> nite)
+ * seek (six?)
+ * have hive? (five)
+ * fore (four, before) (hour? tour?)
+ * tree (three)
+ * true (two)
+ * star (ace)
+ *
+ * https://en.wikipedia.org/wiki/Sven
+ * https://en.wikipedia.org/wiki/Squire
+ * Beginning in the Middle Ages, a squire was the shield- or armour-bearer of a knight.
+ * Sven is a knight. A nite! https://en.wikipedia.org/wiki/Knight
+ *
+ * potential players
+ */
+
+function keep(game, self, note) {
+  hold[game % self] = note;
+}
+
+function lite(game, peer) {
+  play(game, peer, 1);
+}
+
+function kite(game, peer) {
+  play(game, peer, 2);
+}
+
+function mite(game, peer) {
+  play(game, peer, 3);
+}
+
+function site(game, peer) {
+  play(game, peer, 4);
+}
+
+function fite(game, peer) {
+  play(game, peer, 5);
+}
+
+function bite(game, peer) {
+  play(game, peer, 6);
+}
+
+function nite(game, peer) {
+  play(game, peer, 7);
+}
+
+/**
+ * Static 7-step process.
+ */
+
+function rite(peer) {
+  lite(peer);
+  kite(peer);
+  mite(peer);
+  site(peer);
+  fite(peer);
+  bite(peer);
+  nite(peer);
+}
+
+/**
+ * Dynamic 7-step process.
+ */
+
+function play_band(band) {
+  band.forEach(sing);
+}
+
+function sing(peer) {
+  // pick note from feel
+  var note = feel(peer);
+  play(peer, note);
+}
+
+function feel(peer) {
+  // peer is just an index
+  // get calculated automata value here
+  // how?
+}
+
+function meet(time, peer) {
+  var room = [];
+  loop(time, bump);
+  return room;
+
+  function bump(spot) {
+    var mate = peer(spot);
+    room.push(mate);
+  }
+}
+
+function main() {
+  var band = meet(50, make_peer);
+  next_view(step);
+
+  function step() {
+    var beat = play_band(band);
+    // digital information about sound/tile/data
+    // so then we can then draw and hear
+    draw_beat(beat);
+    hear_beat(beat);
+  }
+}
+
+function make_peer(spot) {
+  return spot;
+}
+
+/**
+ * Draw it on the page.
+ */
+
+function view_beat(mesh) {
+  // social
+  // peer
+  // draw_beat
+  // mesh is just an array of numbers.
+
+}
+
+/**
+ * Play it in ears.
+ */
+
+function feel_beat(mesh) {
+  // sensual
+  // feel
+}
+
+/**
+ * Textualize beat.
+ *
+ * "Terming" is defining.
+ * "Naming" is even better.
+ */
+
+function name_beat(mesh) {
+  // mental
+  // mind
+  // term_beat
+}
+
+</script>
+
+<script>
+main();
+</script>
+</body>

@@ -1,0 +1,2 @@
+
+Knowledge is scattered through many resources. It also assumes a high degree of knowledge already (See the audiobook "The Knowledge"). For example, academic textbooks assume you already have a rich background of knowledge, and are to be supplemented by teaching from experts. So really, most of the knowledge is stored in the heads of the teachers and experts. So there needs to be some way to have it so you can start with no context, and no experts, and get to expert level as fast as possible.

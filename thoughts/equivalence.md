@@ -1,0 +1,14 @@
+
+- Prove equivalence between graph model and sql model
+  - define schema in sql
+  - define graph schema
+  - define pattern mapping them together
+  - have generic "equivalence test" to see if the two can be derived from each other based on the pattern you defined
+    - are they isomorphic?
+    - are they complete representations of each other?
+    - if not, it would hint at what else needs to be defined
+    - what does it mean that they are equivalent? they can accept the same queries? (similar to automata)
+    - Two schema are equivalent if they accept the exact same queries.
+    - Two schemas are perfectly similar (or completely overlap) if they accept the exact same queries, but also accept their own queries that the other one doesn't accept.
+- Given that you can do that, then derive an equivalent sql model from a graph schema
+- Prove equivalence between graph model and rest api

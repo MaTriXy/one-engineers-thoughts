@@ -1,0 +1,2 @@
+
+Having trouble remembering where everything is in the app. It would be nice if it could just show you different views of the code to jog your memory. I know I did something similar to what I'm supposed to do now, but don't know where it is. Should have some way of looking up "similar example to what I'm trying to do now", and it shows me how I solved it before. Right now I'm having to look through the code, but don't remember where it could be.
